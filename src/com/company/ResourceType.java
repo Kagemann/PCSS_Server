@@ -7,10 +7,10 @@ public enum ResourceType {
 	 * int[] resources = new int[5];
 	 * 
 	 * to add spaceDebris into the array:
-	 * resources[SPACEDEBRIS]++;
+	 * resources[ResourceType.SPACEDEBRIS]++;
 	 * 
 	 * to check how much mars sand a user has:
-	 * resources[MARSSAND];
+	 * resources[ResourceType.MARSSAND];
 	 */
 	
 	SPACEDEBRIS,
