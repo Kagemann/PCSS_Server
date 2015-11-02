@@ -1,5 +1,18 @@
 package com.company;
 public enum ResourceType {
+	
+	//TUTORIAL:
+	/*
+	 * declare int array:
+	 * int[] resources = new int[5];
+	 * 
+	 * to add spaceDebris into the array:
+	 * resources[SPACEDEBRIS]++;
+	 * 
+	 * to check how much mars sand a user has:
+	 * resources[MARSSAND];
+	 */
+	
 	SPACEDEBRIS,
 	MOONWATER,
 	ALIENDNA,
