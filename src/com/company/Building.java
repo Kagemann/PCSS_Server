@@ -80,6 +80,21 @@ public class Building {
 		
 		return returnHexagons;
 	}
+	
+	/**
+	 * TODO
+	 * @param hexagon
+	 * @return
+	 */
+	public boolean isNearby(Hexagon hexagon) {
+		Hexagon[] hexArray = new Hexagon[1];
+		hexArray[0] = hexagon;
+		hexArray = getNearbyHexagons(hexArray);
+		
+		if (hexArray.length == 0)
+			return false;
+		return true;
+	}
 
 	/**
 	 * Upgrades a building.

@@ -185,8 +185,19 @@ public class Hexagon {
 	/**
 	 * @return amount of houses each player has on this hexagon
 	 */
-	public int[] getNearbyPlayers() {
+	public int[] getNearbyPlayers(Building[] buildings) {
 		// TODO
+		
+		int i = 0;
+		
+		for (int j = 0; j < buildings.length; j++) {
+			if (buildings[j].isNearby(this)) {
+				i++;
+			}
+		}
+		
+		System.out.println("Result: " + i);
+		
 		return null;
 	}
 
