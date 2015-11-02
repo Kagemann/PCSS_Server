@@ -17,6 +17,7 @@ public class Main {
 		// Building test code END
 		
 		// Hexagon test code START
+		/*
 		Hexagon[] hexagons = Hexagon.generateMap();
 		Building[] buildings = new Building[5];
 		
@@ -26,9 +27,8 @@ public class Main {
 		buildings[3] = new Building(1, 5);
 		buildings[4] = new Building(1, 13);
 		
-		//System.out.println(buildings[1].getDivision() + ", " + buildings[1].getIndex());
-		
-		Hexagon.getHexagonByDivision(1, 2, hexagons).getNearbyPlayers(buildings);
+		System.out.println("Buildings nearby: " + Hexagon.getHexagonByDivision(1, 2, hexagons).getNearbyBuildings(buildings));
+		*/
 		// Hexagon test code END
 	}
 

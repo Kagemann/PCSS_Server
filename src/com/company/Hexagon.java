@@ -126,8 +126,8 @@ public class Hexagon {
 	}
 	
 	/**
-	 * TODO This should not be called "getIndex" but something else like "getRow"
-	 * @return
+	 * Gets the index of the current hexagon.
+	 * @return the index
 	 */
 	public int getIndex() {
 		switch(getDivision()) {
@@ -144,11 +144,18 @@ public class Hexagon {
 		return 0;
 	}
 	
-	// TODO rename
+	/**
+	 * Method used to retrieve the current hexagon's position in the array
+	 * @return the index
+	 */
 	public int getIndexInArray() {
 		return indexInArray;
 	}
 	
+	/**
+	 * Method used to set the current hexagon's position in the array
+	 * @param index the index
+	 */
 	private void setIndexInArray(int index) {
 		this.indexInArray = index;
 	}
@@ -183,22 +190,40 @@ public class Hexagon {
 	}
 	
 	/**
+	 * Used to get information about how many buildings are nearby.
+	 * Upgraded buildings count as 2 buildings.
 	 * @return amount of houses each player has on this hexagon
+	 * @see Building#isNearby(Hexagon)
 	 */
-	public int[] getNearbyPlayers(Building[] buildings) {
-		// TODO
-		
+	public int getNearbyBuildings(Building[] buildings) {
 		int i = 0;
 		
 		for (int j = 0; j < buildings.length; j++) {
 			if (buildings[j].isNearby(this)) {
-				i++;
+				if (buildings[j].isUpgraded())
+					i += 2;
+				else
+					i++;
 			}
 		}
 		
-		System.out.println("Result: " + i);
+		return i;
+	}
+	
+	/**
+	 * Used to get information about how many resources each player should get from the hexagon.
+	 * @param players the player array
+	 * @return array containing how many resources each player should get 
+	 * @see Hexagon#getNearbyBuildings(Building[])
+	 */
+	public int[] getNearbyPlayers(Player[] players) {
+		int[] amount = new int[players.length];
+		for (int i = 0; i < players.length; i++) {
+			// player class needs to be updated for this to work
+			// amount[i] = getNearbyBuildings(players[i].getBuildings());
+		}
 		
-		return null;
+		return amount;
 	}
 
 	/**

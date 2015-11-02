@@ -82,9 +82,10 @@ public class Building {
 	}
 	
 	/**
-	 * TODO
-	 * @param hexagon
-	 * @return
+	 * Checks if a single hexagon is near the building.
+	 * Uses {@link Building#getNearbyHexagons(Hexagon[])} to calculate this.
+	 * @param hexagon the hexagon
+	 * @return true if the hexagon is near the building; otherwise false
 	 */
 	public boolean isNearby(Hexagon hexagon) {
 		Hexagon[] hexArray = new Hexagon[1];
@@ -112,6 +113,13 @@ public class Building {
 		}
 	}
 	
+	/**
+	 * @return upgraded
+	 */
+	public boolean isUpgraded() {
+		return upgraded;
+	}
+
 	/**
 	 * @return the division of the building
 	 */
