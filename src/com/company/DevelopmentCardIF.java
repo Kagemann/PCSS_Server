@@ -13,13 +13,13 @@ public interface DevelopmentCardIF {
     //Knight
     public final int Blackhole = 0;
     //Road
-    public final int Road = 2;
+    public final int Road = 1;
     //Monopoly
-    public final int Mono = 3;
+    public final int Mono = 2;
     //Unknown to report to other players
-    public final int Unknown = 4;
+    public final int Unknown = 3;
     //Highest known number
-    public final int Max = 5;
+    public final int Max = 4;
 
 
 

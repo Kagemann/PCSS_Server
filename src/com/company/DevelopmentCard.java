@@ -12,11 +12,15 @@ public class DevelopmentCard implements DevelopmentCardIF {
     /**
      * OLD = old card, NEW = new card
      */
+
     private static final int OLD = 0;
     private static final int NEW = 1;
+
+
     /**
      * Empty developmentcard deck
      */
+
     public int [][] devCard;
 
     public DevelopmentCard() {
@@ -29,6 +33,7 @@ public class DevelopmentCard implements DevelopmentCardIF {
     /**
      * Make a copy of the developmentcardDeck
      */
+
     public DevelopmentCard(DevelopmentCard set){
         for (int i = DevelopmentCard.Min;
              i < DevelopmentCard.Max; i++){
@@ -51,6 +56,7 @@ public class DevelopmentCard implements DevelopmentCardIF {
     /**
      * Returns the total number of development cards
      */
+
     public int getTotal(){
         int sum = 0;
         for (int i = DevelopmentCard.Min;
