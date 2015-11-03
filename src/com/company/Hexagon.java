@@ -1,10 +1,12 @@
 package com.company;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Hexagon {
 	
 	private int indexInArray;
 	private int number;
+	private static Hexagon[] hexagons;
 	private ResourceType type;
 	private boolean robbed;
 
@@ -58,6 +60,8 @@ public class Hexagon {
 		for (int i = 0; i < hexagons.length; i++) {
 			hexagons[i].setIndexInArray(i);
 		}
+		
+		Hexagon.hexagons = hexagons;
 		
 		return hexagons;
 	}
@@ -190,24 +194,28 @@ public class Hexagon {
 	}
 	
 	/**
-	 * Used to get information about how many buildings are nearby.
-	 * Upgraded buildings count as 2 buildings.
-	 * @return amount of houses each player has on this hexagon
-	 * @see Building#isNearby(Hexagon)
+	 * TODO
+	 * @param hexagonList
+	 * @param positions
+	 * @param excludePosition
+	 * @return
 	 */
-	public int getNearbyBuildings(Building[] buildings) {
-		int i = 0;
-		
-		for (int j = 0; j < buildings.length; j++) {
-			if (buildings[j].isNearby(this)) {
-				if (buildings[j].isUpgraded())
-					i += 2;
-				else
-					i++;
+	public static boolean hasSharedPositions(ArrayList<Hexagon> hexagonList, ArrayList<Position> positions, Position excludePosition) {
+		if (hexagonList.size() == 2) {
+			for (int i = 0; i < positions.size(); i++) {
+				if (positions.get(i).isNearby(hexagonList.get(0)) && positions.get(i).isNearby(hexagonList.get(1))) {
+					if (!Position.comparePosition(excludePosition, positions.get(i))) {
+						return true;
+					}
+				}
 			}
 		}
-		
-		return i;
+		else {
+			System.out.println("ArrayList needs to contain 2 objects");
+			System.out.println("Currently containing: \n" + hexagonList.get(0).getDivision() + ", " + hexagonList.get(0).getIndex());
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -245,5 +253,13 @@ public class Hexagon {
 	 */
 	public boolean isRobbed() {
 		return robbed;
+	}
+	
+	/**
+	 * TODO
+	 * @return
+	 */
+	public static Hexagon[] getHexagons() {
+		return hexagons;
 	}
 }
