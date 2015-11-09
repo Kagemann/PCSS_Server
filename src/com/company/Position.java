@@ -56,7 +56,7 @@ public class Position {
 			return 1;
 		
 		// get nearby hexagons
-		Hexagon[] nearbyHexagons = Building.getNearbyHexagons(inPos);
+		Hexagon[] nearbyHexagons = Position.getNearbyHexagons(inPos);
 		
 		// comment
 		ArrayList<Hexagon> upwardHexagons = new ArrayList<>();
