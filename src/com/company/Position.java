@@ -22,6 +22,18 @@ public class Position {
 	
 	/**
 	 * TODO
+	 * @param startPos
+	 * @param endPos
+	 * @return
+	 */
+	public static int getLength(Position startPos, Position endPos){
+		ArrayList<Position> positions = new ArrayList<Position>();
+		positions.add(startPos);
+		return getLength(positions, endPos);
+	}
+	
+	/**
+	 * TODO
 	 * @param positions
 	 * @param inPos
 	 * @return
@@ -46,21 +58,22 @@ public class Position {
 		}
 		
 		// check if a building is at the same position
-		if (Building.getByPosition(inPos) != null) {
-			return 0;
+		for (int i = 0; i < positions.size(); i++) {
+			if (Position.comparePosition(positions.get(i), inPos)) {
+				return 0;
+			}
+			
+			if (Position.comparePosition(new Position(inPos.getDivision(), (inPos.getIndex() + 1) % maxIndex), positions.get(i)) ||
+				Position.comparePosition(new Position(inPos.getDivision(), (inPos.getIndex() + maxIndex - 1) % maxIndex), positions.get(i)))
+				return 1;
 		}
-				
-		// check for nearby buildings using index
-		if (Building.getByPosition(new Position(inPos.getDivision(), (inPos.getIndex() + 1) % maxIndex)) != null ||
-			Building.getByPosition(new Position(inPos.getDivision(), (inPos.getIndex() + maxIndex - 1) % maxIndex)) != null)
-			return 1;
 		
 		// get nearby hexagons
 		Hexagon[] nearbyHexagons = Position.getNearbyHexagons(inPos);
 		
 		// comment
-		ArrayList<Hexagon> upwardHexagons = new ArrayList<>();
-		ArrayList<Hexagon> downwardHexagons = new ArrayList<>();
+		ArrayList<Hexagon> upwardHexagons = new ArrayList<Hexagon>();
+		ArrayList<Hexagon> downwardHexagons = new ArrayList<Hexagon>();
 		for (int i = 0; i < nearbyHexagons.length; i++) {
 			if (nearbyHexagons[i].getDivision() > inPos.getDivision())
 				upwardHexagons.add(nearbyHexagons[i]);
@@ -86,7 +99,7 @@ public class Position {
 	 * @return the found hexagons
 	 */
 	public static Hexagon[] getNearbyHexagons(Position inPos) {
-		ArrayList<Hexagon> foundHexagons = new ArrayList<>();
+		ArrayList<Hexagon> foundHexagons = new ArrayList<Hexagon>();
 		
 		for (int i = 0; i < Hexagon.getHexagons().length; i++) {
 			// check division
