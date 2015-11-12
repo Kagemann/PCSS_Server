@@ -2,17 +2,13 @@ package com.company;
 
 public class Main {
 
-    public static void main(String[] args) {
-    	
-    	InitServerNetwork lobby = new InitServerNetwork();
-		
-		lobby.initServer(InitServerNetwork.getPort());
-		
-		do {
-			
-			lobby.handleClient();
-			
-		} while(true);
-    	
+    public static void main(String[] args) throws Exception {    	
+    //	InitServerNetwork lobby = new InitServerNetwork();
+		MultiEchoServer lobby = new MultiEchoServer();		
+	//	lobby.initServer(InitServerNetwork.getPort());
+		lobby.EchoServer(MultiEchoServer.getPort());		
+		do {			
+	//		lobby.handleClient();
+		} while(true);   	
     }
 }
