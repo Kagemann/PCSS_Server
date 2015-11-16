@@ -40,7 +40,7 @@ public class Building {
 			System.out.println("Building here:    " + inPos.getDivision() + ", " + inPos.getIndex());
 			Building building = new Building(inPos);
 			buildings.add(building);
-			// check longest road
+			Road.longestRoad();
 			return building;
 		}
 		
