@@ -3,6 +3,10 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class describing a Hexagon for the game Settlers.
+ * @author Anders Frederik Elmholdt
+ */
 public class Hexagon {
 	
 	private int indexInArray;
@@ -95,7 +99,7 @@ public class Hexagon {
 	 * @param hexagons the hexagon array to use
 	 * @return the hexagon(s) with the specific number
 	 */
-	public static Hexagon[] getHexagonByNumber(int number, Hexagon[] hexagons) {
+	public static Hexagon[] getHexagonByNumber(int number) {
 		// find the hexagons
 		Hexagon[] foundHexagons = new Hexagon[2];
 		int index = 0;
@@ -195,11 +199,11 @@ public class Hexagon {
 	}
 	
 	/**
-	 * TODO
-	 * @param hexagonList
-	 * @param positions
-	 * @param excludePosition
-	 * @return
+	 * Finds the shared positions of two hexagons, if any.
+	 * @param hexagonList The two hexagons to use
+	 * @param positions The positions to look at
+	 * @param excludePosition A position chosen to be excluded
+	 * @return true if they contain a shared position; false otherwise
 	 */
 	public static boolean hasSharedPositions(ArrayList<Hexagon> hexagonList, ArrayList<Position> positions, Position excludePosition) {
 		if (hexagonList.size() == 2) {
@@ -217,22 +221,6 @@ public class Hexagon {
 			return true;
 		}
 		return false;
-	}
-	
-	/**
-	 * Used to get information about how many resources each player should get from the hexagon.
-	 * @param players the player array
-	 * @return array containing how many resources each player should get 
-	 * @see Hexagon#getNearbyBuildings(Building[])
-	 */
-	public int[] getNearbyPlayers(Player[] players) {
-		int[] amount = new int[players.length];
-		for (int i = 0; i < players.length; i++) {
-			// player class needs to be updated for this to work
-			// amount[i] = getNearbyBuildings(players[i].getBuildings());
-		}
-		
-		return amount;
 	}
 
 	/**
@@ -257,10 +245,39 @@ public class Hexagon {
 	}
 	
 	/**
-	 * TODO
-	 * @return
+	 * Get the hexagon array.
+	 * @return the hexagon array
 	 */
 	public static Hexagon[] getHexagons() {
 		return hexagons;
+	}
+	
+	/**
+	 * Gets the x position of the hexagon. Used to draw it.
+	 * @return the x coordinate
+	 */
+	public float getX() {
+		return (float)Math.cos(angle());
+	}
+	
+	/**
+	 * Gets the y position of the hexagon. Used to draw it.
+	 * @return the y coordinate
+	 */
+	public float getY() {
+		return (float)Math.sin(angle());
+	}
+	
+	/**
+	 * Function to calculate angle for each polygon
+	 * @return the angle in radians
+	 */
+	private float angle(){
+		float angle;
+		if (indexInArray <=6) 							// for inner
+			angle  = (indexInArray + 3) * 1.0472f; 		// 1.05f = 360/6 is specific angle for all polygons up to 7th.
+		else 											// for outer
+			angle  = (indexInArray + 1) * 0.523599f; 	// 0.523599f = 360/12 for hexagons from 7th
+		return angle;
 	}
 }
