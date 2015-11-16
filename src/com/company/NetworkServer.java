@@ -30,11 +30,6 @@ public class NetworkServer {
 		socketReader = new Scanner(clientLink.getInputStream());
 		sentence = socketReader.nextLine();
 		
-		/*
-		System.out.println("A new number has been accepted from the client: " + num);
-		System.out.println("Performing mathematical operation...");
-		*/
-		
 		tempSentence = sentence.toUpperCase();
 		
 		System.out.println("The new sentence is now: " + tempSentence);
