@@ -10,16 +10,16 @@ public class NetworkServer {
 	
 	private static final int PORT = 82;
 	
-	private String sentence;
-	private String tempSentence;
+	private static String sentence;
+	private static String tempSentence;
 	
-	private ServerSocket serverSocket;
-	private Socket clientLink;
-	private Scanner socketReader;
+	private static ServerSocket serverSocket;
+	private static Socket clientLink;
+	private static Scanner socketReader;
 	
-	private PrintWriter serverOutput;
+	private static PrintWriter serverOutput;
 	
-	public NetworkServer() throws IOException {
+	public static void main(String args[]) throws IOException {
 		
 		serverSocket = new ServerSocket(PORT);
 		clientLink = serverSocket.accept();
