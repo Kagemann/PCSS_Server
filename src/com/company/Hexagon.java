@@ -1,10 +1,13 @@
 package com.company;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Hexagon {
 	
 	private int indexInArray;
 	private int number;
+	private static Hexagon[] hexagons;
 	private ResourceType type;
 	private boolean robbed;
 
@@ -58,6 +61,8 @@ public class Hexagon {
 		for (int i = 0; i < hexagons.length; i++) {
 			hexagons[i].setIndexInArray(i);
 		}
+		
+		Hexagon.hexagons = hexagons;
 		
 		return hexagons;
 	}
@@ -126,8 +131,8 @@ public class Hexagon {
 	}
 	
 	/**
-	 * TODO This should not be called "getIndex" but something else like "getRow"
-	 * @return
+	 * Gets the index of the current hexagon.
+	 * @return the index
 	 */
 	public int getIndex() {
 		switch(getDivision()) {
@@ -144,11 +149,18 @@ public class Hexagon {
 		return 0;
 	}
 	
-	// TODO rename
+	/**
+	 * Method used to retrieve the current hexagon's position in the array
+	 * @return the index
+	 */
 	public int getIndexInArray() {
 		return indexInArray;
 	}
 	
+	/**
+	 * Method used to set the current hexagon's position in the array
+	 * @param index the index
+	 */
 	private void setIndexInArray(int index) {
 		this.indexInArray = index;
 	}
@@ -183,11 +195,44 @@ public class Hexagon {
 	}
 	
 	/**
-	 * @return amount of houses each player has on this hexagon
+	 * TODO
+	 * @param hexagonList
+	 * @param positions
+	 * @param excludePosition
+	 * @return
 	 */
-	public int[] getNearbyPlayers() {
-		// TODO
-		return null;
+	public static boolean hasSharedPositions(ArrayList<Hexagon> hexagonList, ArrayList<Position> positions, Position excludePosition) {
+		if (hexagonList.size() == 2) {
+			for (int i = 0; i < positions.size(); i++) {
+				if (positions.get(i).isNearby(hexagonList.get(0)) && positions.get(i).isNearby(hexagonList.get(1))) {
+					if (!Position.comparePosition(excludePosition, positions.get(i))) {
+						return true;
+					}
+				}
+			}
+		}
+		else {
+			System.out.println("ArrayList needs to contain 2 objects");
+			System.out.println("Currently containing: \n" + hexagonList.get(0).getDivision() + ", " + hexagonList.get(0).getIndex());
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Used to get information about how many resources each player should get from the hexagon.
+	 * @param players the player array
+	 * @return array containing how many resources each player should get 
+	 * @see Hexagon#getNearbyBuildings(Building[])
+	 */
+	public int[] getNearbyPlayers(Player[] players) {
+		int[] amount = new int[players.length];
+		for (int i = 0; i < players.length; i++) {
+			// player class needs to be updated for this to work
+			// amount[i] = getNearbyBuildings(players[i].getBuildings());
+		}
+		
+		return amount;
 	}
 
 	/**
@@ -209,5 +254,13 @@ public class Hexagon {
 	 */
 	public boolean isRobbed() {
 		return robbed;
+	}
+	
+	/**
+	 * TODO
+	 * @return
+	 */
+	public static Hexagon[] getHexagons() {
+		return hexagons;
 	}
 }
