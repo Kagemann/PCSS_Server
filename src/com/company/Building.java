@@ -30,8 +30,7 @@ public class Building {
 	
 	/**
 	 * This method should be used instead of calling the constructor since it contains error checking.
-	 * @param division the division
-	 * @param index the index
+	 * @param inPos TODO
 	 * @return the constructed building; returns null if no building can be built
 	 */
 	public static Building build(Position inPos) {
@@ -50,8 +49,8 @@ public class Building {
 	
 	/**
 	 * Finds a building by a given division and index
-	 * @param division the division
-	 * @param index the index
+	 * //@param division the division
+	 * //@param index the index
 	 * @return the found building; null if no building is found
 	 */
 	public static Building getByPosition(Position inPos) {

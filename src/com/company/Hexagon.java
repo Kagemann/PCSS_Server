@@ -19,7 +19,7 @@ public class Hexagon {
 	 * Constructor for a Hexagon.
 	 * The boolean hasRobber is inferred from the type of the resource.
 	 * @param resourceType the type of resource the hexagon contains
-	 * @param position the position of the hexagon
+	 * @param number the position of the hexagon
 	 * @param number the number that has to be rolled for the hexagon to yield resources
 	 */
 	Hexagon(ResourceType resourceType, int number) {
