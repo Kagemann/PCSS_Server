@@ -10,34 +10,37 @@ public class NetworkServer {
 	
 	private static final int PORT = 82;
 	
-	private static int num;
-	private static int temp;
+	private String sentence;
+	private String tempSentence;
 	
-	private static ServerSocket serverSocket;
-	private static Socket clientLink;
-	private static Scanner socketReader;
+	private ServerSocket serverSocket;
+	private Socket clientLink;
+	private Scanner socketReader;
 	
-	private static PrintWriter serverOutput;
+	private PrintWriter serverOutput;
 	
-	public static void main(String[] args) throws IOException {
+	public NetworkServer() throws IOException {
 		
 		serverSocket = new ServerSocket(PORT);
 		clientLink = serverSocket.accept();
 		
 		System.out.println("The server has now been opened.");
+		System.out.println("Waiting for input...");
 		
 		socketReader = new Scanner(clientLink.getInputStream());
-		num = socketReader.nextInt();
+		sentence = socketReader.nextLine();
 		
+		/*
 		System.out.println("A new number has been accepted from the client: " + num);
 		System.out.println("Performing mathematical operation...");
+		*/
 		
-		temp = num * 2;
+		tempSentence = sentence.toUpperCase();
 		
-		System.out.println("The new number is now: " + temp);
+		System.out.println("The new sentence is now: " + tempSentence);
 		
 		serverOutput = new PrintWriter(clientLink.getOutputStream());
-		serverOutput.println(temp);
+		serverOutput.println(tempSentence);
 		serverOutput.flush();
 		
 	}
